@@ -1,6 +1,3 @@
-
-
-
 !pip install yfinance
 #!pip install pandas
 #!pip install requests
@@ -34,12 +31,10 @@ for row in soup.find_all("tbody")[1].find_all("tr"):
     revenue = col[1].text.replace("$", "").replace(",", "")
     tesla_revenue = tesla_revenue.append({"Date":date, "Revenue":revenue},ignore_index=True)
     
-
 tesla_revenue = tesla_revenue[tesla_revenue['Revenue'] != ""]
 
 tesla_revenue.dropna(inplace=True)
 print(tesla_revenue)
-
 
 tesla_revenue.tail()
 
@@ -49,6 +44,8 @@ tesla_revenue.tail()
 43	2010-03-31	21
 45	2009-09-30	46
 46	2009-06-30	27
+
+make_graph(tesla_data, tesla_revenue, 'Tesla')
 
 gamestop=yf.Ticker("GME")
 
@@ -80,8 +77,5 @@ gme_revenue.tail(5)
 61	2005-07-31	416
 62	2005-04-30	475
 63	2005-01-31	709
-
-
-make_graph(tesla_data, tesla_revenue, 'Tesla')
 
 make_graph(gme_data, gme_revenue, 'GameStop')
